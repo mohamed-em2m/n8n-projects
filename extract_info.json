@@ -1,0 +1,272 @@
+[
+  {
+    "full_name": "Emily Johnson",
+    "email": "emily.johnson@x.dummyjson.com",
+    "phone": "+81 965-431-3024",
+    "company_name": "Dooley, Kozey and Cronin",
+    "processed_at": "2025-12-23T16:05:49.062Z",
+    "geocoding": "626 Main Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Mia Rodriguez",
+    "email": "mia.rodriguez@x.dummyjson.com",
+    "phone": "+49 989-461-8403",
+    "company_name": "Miller, Schowalter and Wisozk",
+    "processed_at": "2025-12-23T16:05:49.062Z",
+    "geocoding": "1627 Sixth Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Avery Perez",
+    "email": "avery.perez@x.dummyjson.com",
+    "phone": "+61 731-431-3457",
+    "company_name": "Herzog Inc",
+    "processed_at": "2025-12-23T16:05:49.062Z",
+    "geocoding": "1125 First Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Abigail Rivera",
+    "email": "abigail.rivera@x.dummyjson.com",
+    "phone": "+91 228-363-7806",
+    "company_name": "Prohaska - Thiel",
+    "processed_at": "2025-12-23T16:05:49.062Z",
+    "geocoding": "996 Oak Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Addison Wright",
+    "email": "addison.wright@x.dummyjson.com",
+    "phone": "+1 514-384-3300",
+    "company_name": "Kreiger Inc",
+    "processed_at": "2025-12-23T16:05:49.062Z",
+    "geocoding": "568 Tenth Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Michael Williams",
+    "email": "michael.williams@x.dummyjson.com",
+    "phone": "+49 258-627-6644",
+    "company_name": "Spinka - Dickinson",
+    "processed_at": "2025-12-23T16:05:49.063Z",
+    "geocoding": "385 Fifth Street",
+    "company_size": 2
+  },
+  {
+    "full_name": "Sophia Brown",
+    "email": "sophia.brown@x.dummyjson.com",
+    "phone": "+81 210-652-2785",
+    "company_name": "Schiller - Zieme",
+    "processed_at": "2025-12-23T16:05:49.063Z",
+    "geocoding": "1642 Ninth Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "James Davis",
+    "email": "james.davis@x.dummyjson.com",
+    "phone": "+49 614-958-9364",
+    "company_name": "Pagac and Sons",
+    "processed_at": "2025-12-23T16:05:49.063Z",
+    "geocoding": "238 Jefferson Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Emma Miller",
+    "email": "emma.miller@x.dummyjson.com",
+    "phone": "+91 759-776-1614",
+    "company_name": "Graham - Gulgowski",
+    "processed_at": "2025-12-23T16:05:49.063Z",
+    "geocoding": "607 Fourth Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Olivia Wilson",
+    "email": "olivia.wilson@x.dummyjson.com",
+    "phone": "+91 607-295-6448",
+    "company_name": "Pfannerstill Inc",
+    "processed_at": "2025-12-23T16:05:49.063Z",
+    "geocoding": "547 First Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Alexander Jones",
+    "email": "alexander.jones@x.dummyjson.com",
+    "phone": "+61 260-824-4986",
+    "company_name": "Dickens - Beahan",
+    "processed_at": "2025-12-23T16:05:49.063Z",
+    "geocoding": "664 Maple Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Ava Taylor",
+    "email": "ava.taylor@x.dummyjson.com",
+    "phone": "+1 458-853-7877",
+    "company_name": "Nikolaus Inc",
+    "processed_at": "2025-12-23T16:05:49.063Z",
+    "geocoding": "1197 First Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Ethan Martinez",
+    "email": "ethan.martinez@x.dummyjson.com",
+    "phone": "+92 933-608-5081",
+    "company_name": "Gorczany - Gottlieb",
+    "processed_at": "2025-12-23T16:05:49.063Z",
+    "geocoding": "466 Pine Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Isabella Anderson",
+    "email": "isabella.anderson@x.dummyjson.com",
+    "phone": "+49 770-658-4885",
+    "company_name": "Pollich - Hilpert",
+    "processed_at": "2025-12-23T16:05:49.064Z",
+    "geocoding": "1964 Oak Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Liam Garcia",
+    "email": "liam.garcia@x.dummyjson.com",
+    "phone": "+92 870-217-6201",
+    "company_name": "Considine - Torp",
+    "processed_at": "2025-12-23T16:05:49.064Z",
+    "geocoding": "576 Fifth Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Noah Hernandez",
+    "email": "noah.hernandez@x.dummyjson.com",
+    "phone": "+49 393-605-6968",
+    "company_name": "Botsford, Marquardt and Roberts",
+    "processed_at": "2025-12-23T16:05:49.064Z",
+    "geocoding": "1413 Maple Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Charlotte Lopez",
+    "email": "charlotte.lopez@x.dummyjson.com",
+    "phone": "+44 373-953-5028",
+    "company_name": "Zulauf and Sons",
+    "processed_at": "2025-12-23T16:05:49.064Z",
+    "geocoding": "208 Second Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "William Gonzalez",
+    "email": "william.gonzalez@x.dummyjson.com",
+    "phone": "+81 905-252-7319",
+    "company_name": "Spinka - Dickinson",
+    "processed_at": "2025-12-23T16:05:49.064Z",
+    "geocoding": "31 Maple Street",
+    "company_size": 2
+  },
+  {
+    "full_name": "Evelyn Sanchez",
+    "email": "evelyn.sanchez@x.dummyjson.com",
+    "phone": "+1 623-880-6871",
+    "company_name": "Predovic - Johns",
+    "processed_at": "2025-12-23T16:05:49.064Z",
+    "geocoding": "1170 Lincoln Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Logan Torres",
+    "email": "logan.torres@x.dummyjson.com",
+    "phone": "+81 507-434-8733",
+    "company_name": "Jast - Nader",
+    "processed_at": "2025-12-23T16:05:49.064Z",
+    "geocoding": "907 Seventh Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Jackson Evans",
+    "email": "jackson.evans@x.dummyjson.com",
+    "phone": "+44 468-628-6686",
+    "company_name": "Kuhlman LLC",
+    "processed_at": "2025-12-23T16:05:49.064Z",
+    "geocoding": "1873 Main Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Madison Collins",
+    "email": "madison.collins@x.dummyjson.com",
+    "phone": "+81 259-957-5711",
+    "company_name": "Mayer - Smitham",
+    "processed_at": "2025-12-23T16:05:49.064Z",
+    "geocoding": "1892 Lincoln Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Elijah Stewart",
+    "email": "elijah.stewart@x.dummyjson.com",
+    "phone": "+44 468-357-7872",
+    "company_name": "Langworth Group",
+    "processed_at": "2025-12-23T16:05:49.064Z",
+    "geocoding": "1701 Eighth Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Chloe Morales",
+    "email": "chloe.morales@x.dummyjson.com",
+    "phone": "+92 468-541-7133",
+    "company_name": "Grady LLC",
+    "processed_at": "2025-12-23T16:05:49.064Z",
+    "geocoding": "401 Fourth Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Mateo Nguyen",
+    "email": "mateo.nguyen@x.dummyjson.com",
+    "phone": "+1 341-597-6694",
+    "company_name": "Spinka LLC",
+    "processed_at": "2025-12-23T16:05:49.065Z",
+    "geocoding": "1578 Fourth Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Harper Kelly",
+    "email": "harper.kelly@x.dummyjson.com",
+    "phone": "+92 518-863-2863",
+    "company_name": "Leffler, Rolfson and Becker",
+    "processed_at": "2025-12-23T16:05:49.065Z",
+    "geocoding": "1591 Adams Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Evelyn Gonzalez",
+    "email": "evelyn.gonzalez@x.dummyjson.com",
+    "phone": "+61 708-508-4638",
+    "company_name": "Tromp, Gaylord and Weber",
+    "processed_at": "2025-12-23T16:05:49.065Z",
+    "geocoding": "1065 Lincoln Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Daniel Cook",
+    "email": "daniel.cook@x.dummyjson.com",
+    "phone": "+44 254-761-6843",
+    "company_name": "Morissette, Baumbach and Auer",
+    "processed_at": "2025-12-23T16:05:49.065Z",
+    "geocoding": "1163 Pine Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Lily Lee",
+    "email": "lily.lee@x.dummyjson.com",
+    "phone": "+1 808-757-9867",
+    "company_name": "Cremin Inc",
+    "processed_at": "2025-12-23T16:05:49.065Z",
+    "geocoding": "1946 Oak Street",
+    "company_size": 1
+  },
+  {
+    "full_name": "Henry Hill",
+    "email": "henry.hill@x.dummyjson.com",
+    "phone": "+1 240-833-4680",
+    "company_name": "Gerlach, Funk and Schoen",
+    "processed_at": "2025-12-23T16:05:49.065Z",
+    "geocoding": "1837 Maple Street",
+    "company_size": 1
+  }
+]
