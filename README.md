@@ -1,5 +1,66 @@
-# n8n-projects
-video link :https://www.veed.io/view/b6ccc118-3686-461d-8329-3dff015fd5eb?source=editor&panel=share
-workflow link n8n : https://emam2002.app.n8n.cloud/workflow/XCeJ7LnIN4BfUww4 
-This workflow implements a scheduled data processing pipeline that fetches user and post data from external APIs, enriches and transforms it, then routes results to different endpoints based on business logic. The architecture uses parallel data fetching (users and posts simultaneously), followed by deduplication, merging on userId, and extraction of key fields including calculated company sizes. Data then flows through three parallel branches: domain filtering (example.com), company size-based routing (VIP vs regular users), and aggregation reporting with conditional warning notifications.
-<img width="1179" height="724" alt="Screenshot From 2025-12-23 18-08-02" src="https://github.com/user-attachments/assets/7f6896d4-6d4c-4fe8-97da-c01be9000350" />
+# n8n Projects - Data Processing Workflow
+
+**Video Demo:** [Watch here](https://www.veed.io/view/b6ccc118-3686-461d-8329-3dff015fd5eb?source=editor&panel=share)  
+**n8n Workflow Link:** [Open workflow](https://emam2002.app.n8n.cloud/workflow/XCeJ7LnIN4BfUww4)  
+
+---
+
+## Overview
+
+This workflow implements a **scheduled data processing pipeline** that:
+
+- Fetches **user and post data** from external APIs simultaneously.
+- Enriches and transforms the data.
+- Routes results to **different endpoints** based on business logic.
+
+The architecture includes:
+
+- **Parallel Data Fetching:** Users and posts are fetched concurrently.
+- **Data Deduplication & Merging:** Users and posts are merged on `userId`.
+- **Field Extraction & Enrichment:** Key fields are extracted, including full name, email, phone, company name, processed timestamp, and calculated company sizes.
+
+---
+
+## Workflow Branches
+
+After transformation, the data flows through **three parallel branches**:
+
+1. **Domain Filtering**  
+   - Filters users whose email domain is `example.com`.
+2. **Company Size-Based Routing**  
+   - Routes users to **VIP** or **regular** endpoints based on company size.
+3. **Aggregation & Reporting**  
+   - Generates summary reports.
+   - Conditional warning notifications for data anomalies.
+
+---
+
+## Screenshot
+
+<img width="1179" height="724" alt="Workflow Screenshot" src="https://github.com/user-attachments/assets/7f6896d4-6d4c-4fe8-97da-c01be9000350" />
+
+---
+
+## Key Features
+
+- **Parallel Execution:** Fetches users and posts simultaneously to improve efficiency.
+- **Smart Routing & Filtering:** Conditional logic for domain and company size.
+- **Data Aggregation & Reporting:** Summary statistics and notifications.
+- **Error Handling:** Logs failures and continues workflow for robust processing.
+- **Single Point Transformation:** Centralized function node reduces code repetition.
+
+---
+
+## How to Test / Run
+
+1. Import the workflow via the [n8n workflow link](https://emam2002.app.n8n.cloud/workflow/XCeJ7LnIN4BfUww4).  
+2. Set up any required credentials or webhooks (e.g., `webhook.site` or Google Sheets).  
+3. Execute manually or let the schedule trigger run the workflow.  
+4. Observe outputs in the configured destinations and notifications.
+
+---
+
+## Notes
+
+- The workflow demonstrates **concurrent branches, error handling, and aggregation**.
+- Designed to be modular: new branches or conditions can be added without disrupting existing logic.
