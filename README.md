@@ -48,9 +48,3 @@ After transformation, the data flows through **three parallel branches**:
 3. Execute manually or let the schedule trigger run the workflow.  
 4. Observe outputs in the configured destinations and notifications.
 
----
-
-## Notes
-
-- The workflow demonstrates **concurrent branches, error handling, and aggregation**.
-- Designed to be modular: new branches or conditions can be added without disrupting existing logic.
