@@ -548,28 +548,6 @@
       ],
       "id": "e019ad7c-2935-48a8-9cbd-4592ab9481fc",
       "name": "Error Trigger"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        3152,
-        1200
-      ],
-      "typeVersion": 1,
-      "id": "e0fd7767-6af2-4161-aad1-71f26ecf8281",
-      "name": "Sticky Note5"
-    },
-    {
-      "parameters": {},
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        3152,
-        1200
-      ],
-      "typeVersion": 1,
-      "id": "71e20435-2426-4118-92bb-212497f4619a",
-      "name": "Sticky Note6"
     }
   ],
   "pinData": {},
@@ -788,7 +766,7 @@
     "callerPolicy": "workflowsFromSameOwner",
     "errorWorkflow": "XCeJ7LnIN4BfUww4"
   },
-  "versionId": "5ae3f925-e46b-4c31-ac25-becf2c5588b5",
+  "versionId": "4bf8e633-6e88-4cb1-98ac-2eb8d49ad1d1",
   "meta": {
     "instanceId": "674045c47bb5e5b58ca949739329494be4416b2e5eb565f365af030c3a9d0a48"
   },
