@@ -39,17 +39,6 @@ After transformation, the data flows through **three parallel branches**:
 
 <img width="1179" height="724" alt="Workflow Screenshot" src="https://github.com/user-attachments/assets/7f6896d4-6d4c-4fe8-97da-c01be9000350" />
 
----
-
-## Key Features
-
-- **Parallel Execution:** Fetches users and posts simultaneously to improve efficiency.
-- **Smart Routing & Filtering:** Conditional logic for domain and company size.
-- **Data Aggregation & Reporting:** Summary statistics and notifications.
-- **Error Handling:** Logs failures and continues workflow for robust processing.
-- **Single Point Transformation:** Centralized function node reduces code repetition.
-
----
 
 ## How to Test / Run
 
