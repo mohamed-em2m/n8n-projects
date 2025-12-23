@@ -1,0 +1,665 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": "={{ 1 }}"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -816,
+        -208
+      ],
+      "id": "5e2b95b8-5de5-4f14-b01b-9ab310764ab1",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        -448,
+        400
+      ],
+      "id": "40fb4634-eb1a-4026-a291-8846ee4862b4",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.site/45c00574-f1c4-49e8-a79e-3e19928b5019",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "error",
+              "value": "={{$json}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -144,
+        400
+      ],
+      "id": "218f6e3f-587b-4e50-b89f-0c9ffc4e8afa",
+      "name": "HTTP Request2",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.site/45c00574-f1c4-49e8-a79e-3e19928b5019/reglur_users",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data",
+              "value": "={{$json}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1376,
+        688
+      ],
+      "id": "a15369ce-cc73-4099-af05-b2615a0b605d",
+      "name": "sending users to regular users endpoint",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.site/45c00574-f1c4-49e8-a79e-3e19928b5019/vip_users",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data",
+              "value": "={{$json}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1360,
+        400
+      ],
+      "id": "2aa804e0-26fc-4641-8080-d3b6c61f2839",
+      "name": "sending users to vip users endpoint",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "var companies_sizes = {};\n\n// Count users per company\nfor (const item of items) {\n  const user = item.json;\n  if (user.company?.name ) {\n    const name =user.company?.name ;\n    companies_sizes[name] = (companies_sizes[name] || 0) + 1;\n  }\n}\n\n\nreturn items\n  .map(item => {\n    const user = item.json;\n    console.log(user);\n    return {\n      json: {\n        full_name: `${user.firstName} ${user.lastName}`,\n        email: user.email,\n        phone: user.phone,\n        company_name: user.company?.name || null,\n        processed_at: new Date().toISOString(),\n         valid:user.company?.name  && user.phone &&user.email &&user.full_name,\n         geocoding: user.address?.address || null,\n        company_size:user.company?.name ? companies_sizes[user.company?.name ] : null\n      }\n    };\n  })\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        320,
+        -32
+      ],
+      "id": "292fd4aa-a028-4d82-b302-6c6a2c71c088",
+      "name": "extract information",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const users = items.map(i => i.json);\n\nconst totalUsers = items.length;\nconst filteredUsers = users.length;\n\n// Count email domains\nconst domainCounts = {};\nusers.forEach(u => {\n  const domain = u.email?.split(\"@\")[1] || \"unknown\";\n  domainCounts[domain] = (domainCounts[domain] || 0) + 1;\n});\n\n// Most common domain\nlet mostCommonDomain = null;\nlet maxCount = 0;\nfor (const [domain, count] of Object.entries(domainCounts)) {\n  if (count > maxCount) {\n    maxCount = count;\n    mostCommonDomain = domain;\n  }\n}\n\nreturn [\n  {\n    json: {\n      total_users: totalUsers,\n      passed_filter: filteredUsers,\n      most_common_domain: mostCommonDomain,\n      warning: filteredUsers === 0 ? \"No users passed the filter!\" : null,\n      processed_at: new Date().toISOString()\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        720,
+        -272
+      ],
+      "id": "8be20cc5-1db5-4ee4-bdb0-bf8cf2570a6e",
+      "name": "Aggregation/Reporting"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "71284081-b149-4f27-aeef-ad8ebbf9212f",
+              "leftValue": "={{ $json.warning }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1008,
+        -272
+      ],
+      "id": "b873f589-ff05-46c4-ab5f-9242db367df6",
+      "name": "check if there warning"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "674f4da6-4710-45c0-b3b0-a3cae178e5b2",
+              "leftValue": "={{$json.company_size}}",
+              "rightValue": 2,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        752,
+        496
+      ],
+      "id": "3fbd6c2a-14d2-479d-a35e-db0987ff2adf",
+      "name": "Conditional Routing based on company size"
+    },
+    {
+      "parameters": {
+        "url": "https://dummyjson.com/users",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -480,
+        -336
+      ],
+      "id": "148d5fab-3657-4a75-9ba2-4fc45f7c840d",
+      "name": "request user info",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "https://dummyjson.com/posts",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -496,
+        0
+      ],
+      "id": "fd69cccc-64c2-4953-94ac-d8f5096ad0a8",
+      "name": "request posts info",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "let posts = [];\nif (Array.isArray(items[0]?.json?.posts)) {\n  posts = items[0].json.posts.slice(); // shallow copy\n} else {\n  const allArePosts = items.every(it => it.json && (it.json.id || it.json.title));\n  \n  if (allArePosts) {\n    posts = items.map(it => it.json);\n  } else {\n    for (const it of items) {\n      if (Array.isArray(it.json?.posts)) {\n        posts = posts.concat(it.json.posts);\n      }\n    }\n  }\n}\n\nreturn posts.map(post => ({\n  json: {\n    ...post,\n    processed_at: new Date().toISOString()\n  }\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -240,
+        0
+      ],
+      "id": "c1137209-91ed-40c5-802a-85f0fc874b4d",
+      "name": "normalize posts"
+    },
+    {
+      "parameters": {
+        "jsCode": "const emails = new Set();\n\nreturn items[0].json.users\n  .filter(u => !emails.has(u.email) && emails.add(u.email))\n  .map(u => ({\n    json: { ...u, userId: u.id }\n  }));\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -208,
+        -320
+      ],
+      "id": "7cabdb9f-0fee-4ca5-8284-8153aa7f5dac",
+      "name": "Fix the shape and drop duplication"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "fieldsToMatchString": "userId",
+        "joinMode": "enrichInput1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        48,
+        -144
+      ],
+      "id": "8c1d53a1-496e-416b-8b42-0421655da613",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      users: items.map(i => i.json)\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1088,
+        32
+      ],
+      "id": "bd6e4424-fa21-466a-9d53-8c84ec05a24f",
+      "name": "aggregate all users into one request"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      users: items.map(i => i.json)\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1072,
+        384
+      ],
+      "id": "c1326882-38dc-4583-849f-7b8eb7bcc6b8",
+      "name": "aggregate all users into one request1"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    json: {\n      users: items.map(i => i.json)\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1072,
+        688
+      ],
+      "id": "ab1194b8-132b-461b-8a2c-c9c84bbcd703",
+      "name": "aggregate all users into one request2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "0d93f6be-914c-4068-bec2-5d8770aa194a",
+              "leftValue": "email",
+              "rightValue": "example.com",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        720,
+        48
+      ],
+      "id": "8edab82a-c760-495b-bf8d-e3b4247f9ef2",
+      "name": "filter based on domain example.com"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.site/45c00574-f1c4-49e8-a79e-3e19928b5019",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "total_users",
+              "value": "={{$json.total_users}}"
+            },
+            {
+              "name": "passed_filter",
+              "value": "={{$json.passed_filter}}"
+            },
+            {
+              "name": "most_common_domain",
+              "value": "={{$json.most_common_domain}}"
+            },
+            {
+              "name": "processed_at",
+              "value": "={{$json.processed_at}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1376,
+        -176
+      ],
+      "id": "49aeb9d3-ed57-441c-a940-40a9d316a5ee",
+      "name": "sending the summary report",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.site/45c00574-f1c4-49e8-a79e-3e19928b5019",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "=warning",
+              "value": "={{$json.warning}}"
+            },
+            {
+              "name": "processed_at",
+              "value": "={{ $json.processed_at }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1392,
+        -384
+      ],
+      "id": "fa71d52b-da5b-4551-9cdc-18390a146199",
+      "name": "sending the warning",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://webhook.site/45c00574-f1c4-49e8-a79e-3e19928b5019 ",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "data",
+              "value": "={{ $json }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1360,
+        32
+      ],
+      "id": "9f0b7b2e-38b2-4dda-909a-bcc0364def2d",
+      "name": "send the users have domain example.com",
+      "retryOnFail": true,
+      "onError": "continueErrorOutput"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "request user info",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "request posts info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        []
+      ]
+    },
+    "extract information": {
+      "main": [
+        [
+          {
+            "node": "filter based on domain example.com",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Aggregation/Reporting",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Conditional Routing based on company size",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregation/Reporting": {
+      "main": [
+        [
+          {
+            "node": "check if there warning",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "check if there warning": {
+      "main": [
+        [
+          {
+            "node": "sending the warning",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "sending the summary report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Conditional Routing based on company size": {
+      "main": [
+        [
+          {
+            "node": "aggregate all users into one request1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "aggregate all users into one request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "request user info": {
+      "main": [
+        [
+          {
+            "node": "Fix the shape and drop duplication",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "request posts info": {
+      "main": [
+        [
+          {
+            "node": "normalize posts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "normalize posts": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Fix the shape and drop duplication": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "extract information",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "aggregate all users into one request": {
+      "main": [
+        [
+          {
+            "node": "send the users have domain example.com",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "aggregate all users into one request1": {
+      "main": [
+        [
+          {
+            "node": "sending users to vip users endpoint",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "aggregate all users into one request2": {
+      "main": [
+        [
+          {
+            "node": "sending users to regular users endpoint",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "filter based on domain example.com": {
+      "main": [
+        [
+          {
+            "node": "aggregate all users into one request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sending the summary report": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "5ac52a34-18d0-43ac-a5a0-b05f36ff609e",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "9d4c8cce4f70c5dcb276d0094ffce3b74f62967a0076b93d8eaed2f155fcdfaf"
+  },
+  "id": "j84IuP8X0K1RHSYP",
+  "tags": []
+}
